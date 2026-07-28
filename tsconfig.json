@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES6", // Especifica la versión de JavaScript a la que se transpilará el código.
+    "useDefineForClassFields": true, // Habilita el uso de 'define' para campos de las clases.
+    "lib": ["ES2020", "DOM", "DOM.Iterable"], // Especifica las bibliotecas disponibles para el código.
+    "module": "ESNext", // Define el sistema de módulos que se utilizará para la generación de código.
+    "skipLibCheck": true, // Omite la verificación de tipos de archivos de declaración.
+
+    /* Bundler */
+    "moduleResolution": "bundler", // Especifica cómo se resuelven los módulos en el bundler.
+    "allowImportingTsExtensions": true, // Permite importar archivos TypeScript con extensiones.
+    "resolveJsonModule": true, // Permite importar módulos JSON.
+    "isolatedModules": true, // Garantiza que cada archivo se trate como un módulo independiente.
+    "noEmit": true, // Evita que TypeScript genere archivos de salida.
+    "jsx": "react-jsx", // Establece el soporte JSX para React.
+
+    /* Linting */
+    "strict": true, // Habilita la verificación estricta de tipos.
+    "noUnusedLocals": true, // Marca las variables locales no utilizadas.
+    "noUnusedParameters": true, // Marca los parámetros de las funciones no utilizados.
+    "noFallthroughCasesInSwitch": true, // Requiere definir todos los casos en un switch.
+    "declaration": true // Genera archivos de declaración para TypeScript.
+  },
+  "include": ["src"], // Especifica el directorio que se incluirá al buscar archivos TypeScript.
+  "exclude": ["src/**/__docs__", "src/**/__test__"]
+}
