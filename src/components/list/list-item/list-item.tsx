@@ -14,6 +14,7 @@ import {
   StyledEndContent,
 } from "./list-item.style";
 import { useListContext } from "../context/list-context";
+import { HtmlProps } from "../..";
 
 const Label: React.FC<React.HTMLAttributes<HTMLSpanElement>> = (props) => (
   <StyledLabel {...props} />
@@ -27,7 +28,7 @@ const EndContent: React.FC<React.HTMLAttributes<HTMLDivElement>> = (props) => (
   <StyledEndContent {...props} />
 );
 
-const ListItemBase: React.FC<ListItemProps> = ({
+const ListItemBase: React.FC<ListItemProps & HtmlProps<HTMLDivElement>> = ({
   label,
   description,
   children,
@@ -39,6 +40,7 @@ const ListItemBase: React.FC<ListItemProps> = ({
   defaultExpanded = false,
   startAdornment,
   endAdornment,
+  htmlProps,
   ...rest
 }) => {
   const [expanded, setExpanded] = useState(defaultExpanded);
@@ -46,6 +48,13 @@ const ListItemBase: React.FC<ListItemProps> = ({
   const isInteractive = (clickable || expandable) && !disabled;
 
   const { hasDivider: listHasDivider } = useListContext();
+
+  const hasStructuredContent =
+    label != null ||
+    description != null ||
+    startAdornment != null ||
+    endAdornment != null ||
+    expandable;
 
   return (
     <StyledListItem
@@ -63,51 +72,54 @@ const ListItemBase: React.FC<ListItemProps> = ({
           setExpanded(!expanded);
         }
       }}
+      {...htmlProps}
       {...rest}
     >
-      <StyledItemContent>
-        <StyledMainContent>
-          {startAdornment}
+      {hasStructuredContent && (
+        <StyledItemContent>
+          <StyledMainContent>
+            {startAdornment}
 
-          <StyledTextContent>
-            <StyledLabel>{label}</StyledLabel>
+            {(label != null || description != null) && (
+              <StyledTextContent>
+                {label != null && <StyledLabel>{label}</StyledLabel>}
 
-            {description && (
-              <StyledDescription>{description}</StyledDescription>
+                {description != null && (
+                  <StyledDescription>{description}</StyledDescription>
+                )}
+              </StyledTextContent>
             )}
-          </StyledTextContent>
-        </StyledMainContent>
+          </StyledMainContent>
 
-        <StyledEndContent>
-          {endAdornment}
+          <StyledEndContent>
+            {endAdornment}
 
-          {expandable && (
-            <Icon
-              variant={"sort-asc"}
-              htmlProps={{
-                style: {
-                  display: expanded ? "inline-block" : "none",
-                },
-              }}
-            />
-          )}
-          {expandable && (
-            <Icon
-              variant={"sort-desc"}
-              htmlProps={{
-                style: {
-                  display: !expanded ? "inline-block" : "none",
-                },
-              }}
-            />
-          )}
-        </StyledEndContent>
-      </StyledItemContent>
+            {expandable && (
+              <Icon
+                variant={"sort-asc"}
+                htmlProps={{
+                  style: {
+                    display: expanded ? "inline-block" : "none",
+                  },
+                }}
+              />
+            )}
+            {expandable && (
+              <Icon
+                variant={"sort-desc"}
+                htmlProps={{
+                  style: {
+                    display: !expanded ? "inline-block" : "none",
+                  },
+                }}
+              />
+            )}
+          </StyledEndContent>
+        </StyledItemContent>
+      )}
 
       {expandable ? (
-        expanded && children ? (
-          <StyledChildren>{children}</StyledChildren>
-        ) : null
+        <StyledChildren $expanded={expanded}>{children}</StyledChildren>
       ) : (
         children
       )}
@@ -127,4 +139,4 @@ ListItem.Label = Label;
 ListItem.Description = Description;
 ListItem.EndContent = EndContent;
 
-export { ListItem };
+export { ListItem, ListItemBase };

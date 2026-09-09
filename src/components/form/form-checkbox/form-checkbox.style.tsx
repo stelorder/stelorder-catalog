@@ -3,12 +3,12 @@ import { IntegrationsThemeType, StyledProp } from "../../styles/theme";
 import { DefaultTheme } from "styled-components/dist/types";
 import React, { HtmlHTMLAttributes } from "react";
 import { createValidatingFormControlCssBlock } from "../form-utils";
-import { AlignLabel, ValidatingState } from "../form-types";
+import { AlignLabel, SwitchVariant, ValidatingState } from "../form-types";
 import { StyledLabel } from "../form-label/form-label.style";
 
 type StyledFormCheckboxType = StyledProp<{
   state?: ValidatingState;
-  type?: "checkbox" | "radio" | "switch";
+  type?: "checkbox" | "radio" | SwitchVariant;
   label?: string;
   labelPosition: AlignLabel;
   labelGap: number;
@@ -24,6 +24,18 @@ export const StyledFormCheckbox = ({
   },
   ...htmlProps
 }: StyledFormCheckboxType) => {
+  if (type === "switch-pill") {
+    return (
+      <StyledComponentSwitchPill
+        {...htmlProps}
+        className="form-control"
+        label={label}
+        labelPosition={labelPosition}
+        labelGap={labelGap}
+      />
+    );
+  }
+
   return type !== "switch" ? (
     <StyledComponentCheckAndRadio
       {...htmlProps}
@@ -226,3 +238,87 @@ const checkRadioBaseStyle = ({
     }
   `}
 `;
+
+// ========== Switch Pill Styles ==========
+
+const StyledSwitchPillTrack = styled.div`
+  position: relative;
+  overflow: visible;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 100px;
+  background-color: ${({ theme }) => theme.colors.bn.bn30};
+  height: 12px;
+  width: 32px;
+  transition: background-color 0.3s ease-in-out;
+
+  &:has(input:checked) {
+    background-color: ${({ theme }) =>
+      theme.colors.orderSecondary.orderSecondary10};
+  }
+`;
+
+const StyledSwitchPillThumb = styled.span`
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: ${({ theme }) => theme.colors.bn.bn80};
+  transition: all 0.3s ease-in-out;
+  left: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+
+  input:checked + & {
+    background-color: ${({ theme }) =>
+      theme.colors.orderSecondary.orderSecondary100};
+    left: calc(100% - 16px + 2px);
+  }
+`;
+
+const StyledSwitchPillInput = styled.input`
+  display: none;
+`;
+
+const StyledComponentSwitchPill: React.FC<
+  HtmlHTMLAttributes<HTMLInputElement> & {
+    label?: string;
+    labelPosition: AlignLabel;
+    labelGap: number;
+  }
+> = (props) => {
+  const theme = useTheme() as IntegrationsThemeType;
+
+  return (
+    <label
+      htmlFor={props.id}
+      style={{
+        cursor: "pointer",
+        display: "inline-flex",
+        alignItems: "center",
+        gap: props.labelGap,
+      }}
+    >
+      {props.label && (
+        <StyledLabel
+          style={{
+            order: props.labelPosition === "left" ? 0 : 1,
+            verticalAlign: "middle",
+            color: theme.colors.orderSecondary.orderSecondary100,
+          }}
+          as="span"
+        >
+          {props.label}
+        </StyledLabel>
+      )}
+      <StyledSwitchPillTrack>
+        <StyledSwitchPillInput {...props} type="checkbox" />
+        <StyledSwitchPillThumb />
+      </StyledSwitchPillTrack>
+    </label>
+  );
+};

@@ -1,6 +1,6 @@
 {
   "name": "@stelsolutions/stelorder-catalog",
-  "version": "1.4.0",
+  "version": "1.5.9",
   "scripts": {
     "prettier:format": "prettier --write --parser typescript '**/*.{ts,tsx}'",
     "prettier:check": "prettier --check --parser typescript '**/*.{ts,tsx}'",

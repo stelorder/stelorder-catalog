@@ -42,9 +42,12 @@ type FormComponent = typeof FormBase & {
   Control: typeof FormControl;
   Feedback: typeof FormFeedback;
   Checkbox: typeof FormCheckbox;
+  CheckCard: typeof FormCheckCard;
   Select: typeof FormSelect;
   TextArea: typeof FormTextArea;
+  ComplexTextArea: typeof FormComplexTextArea;
   Color: typeof FormColor;
+  Date: typeof FormDate;
 };
 
 const Form = FormBase as unknown as FormComponent;
@@ -56,15 +59,21 @@ import FormControl from "./form-control/form-control";
 import FormFeedback from "./form-feedback/form-feedback";
 import FormCheckbox from "./form-checkbox/form-checkbox";
 import FormSelect from "./form-select/form-select";
+import FormCheckCard from "./form-checkCard/form-checkCard";
 import FormTextArea from "./form-textArea/form-textArea";
+import FormComplexTextArea from "./form-complexTexArea/form-complexTextArea";
 import FormColor from "./form-color/form-color";
+import FormDate from "./form-date/form-date";
 
 Form.Group = FormGroup;
 Form.Label = FormLabel;
 Form.Control = FormControl;
 Form.Feedback = FormFeedback;
 Form.Checkbox = FormCheckbox;
+Form.CheckCard = FormCheckCard;
 Form.Select = FormSelect;
 Form.TextArea = FormTextArea;
+Form.ComplexTextArea = FormComplexTextArea;
 Form.Color = FormColor;
+Form.Date = FormDate;
 export default Form;

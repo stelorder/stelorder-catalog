@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { HtmlProps } from "../../styles/theme";
 import { ValidatingState } from "../form-types";
 import { mapState } from "../form-utils";
@@ -73,6 +73,18 @@ const FormTextArea: React.FC<FormTextAreaProps & HtmlProps<HTMLDivElement>> = ({
       hiddenRef.current.value = text;
     }
   }, []);
+
+  useEffect(() => {
+    const el = editorRef.current;
+    if (!el) return;
+
+    const nextValue = value ?? "";
+
+    if (el.innerText !== nextValue) {
+      el.innerText = nextValue;
+      syncHidden(nextValue);
+    }
+  }, [value, syncHidden]);
 
   const handleInput = useCallback(() => {
     const el = editorRef.current;

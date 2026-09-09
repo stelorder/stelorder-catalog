@@ -1,10 +1,11 @@
 /// <reference types="vite/client" />
-import React, { lazy, PropsWithChildren, Suspense, useMemo } from "react";
+import React, { PropsWithChildren, Suspense, useMemo } from "react";
 import { StyledIcon } from "./icon.style";
 import { HtmlProps } from "../styles/theme";
 import * as Utils from "./icon-utils";
 
 import { IconVariant, StrokeLinecap, StrokeLinejoin } from "./icon-constants";
+import { getLazyIcon, resolvedIcons } from "./lazy-icon-cache.tsx";
 export type SizePx = string; // reuse the central type via import (kept for clarity in this snippet)
 
 export type IconProps = {
@@ -16,23 +17,6 @@ export type IconProps = {
   strokeWidth?: number;
   strokeLinecap?: StrokeLinecap;
   strokeLinejoin?: StrokeLinejoin;
-};
-
-const svgModules = import.meta.glob("../assets/icons/**/*.svg", {
-  query: "?react",
-  import: "default",
-});
-
-const LazyIcon = ({ variant }: { variant: IconVariant }) => {
-  return lazy(async () => {
-    const path = `../assets/icons/${variant}.svg`;
-    const loader = svgModules[path];
-    if (!loader) throw new Error(`Icon not found: ${variant}`);
-    const Component = (await loader()) as React.FC<
-      React.SVGProps<SVGSVGElement>
-    >;
-    return { default: Component };
-  });
 };
 
 const Icon: React.FC<
@@ -48,8 +32,25 @@ const Icon: React.FC<
   strokeLinejoin,
   htmlProps,
 }) => {
-  const iconMemo = useMemo(() => LazyIcon({ variant }), [variant]);
+  const iconMemo = useMemo(() => getLazyIcon(variant), [variant]);
+  const resolved = resolvedIcons.get(variant);
 
+  const styledProps = {
+    $styled: {
+      color,
+      width,
+      height,
+      stroke,
+      strokeWidth,
+      strokeLinecap,
+      strokeLinejoin,
+    },
+    ...htmlProps,
+  };
+
+  if (resolved) {
+    return <StyledIcon as={resolved} {...styledProps} />;
+  }
   const toPx = (v?: SizePx) => v;
 
   const fallbackStyle: React.CSSProperties = {};
@@ -58,19 +59,7 @@ const Icon: React.FC<
 
   return (
     <Suspense fallback={<div style={fallbackStyle} />}>
-      <StyledIcon
-        as={iconMemo}
-        $styled={{
-          color,
-          width,
-          height,
-          stroke,
-          strokeWidth,
-          strokeLinecap,
-          strokeLinejoin,
-        }}
-        {...htmlProps}
-      />
+      <StyledIcon as={iconMemo} {...styledProps} />
     </Suspense>
   );
 };

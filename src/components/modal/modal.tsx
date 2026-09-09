@@ -26,6 +26,7 @@ export type ModalProps = {
   showCloseButton?: boolean;
   onClose?: () => void;
   layout?: ModalLayout;
+  closeOnBackdrop?: boolean;
 };
 
 // Modal component
@@ -43,6 +44,7 @@ const Modal: React.FC<
   showCloseButton = false,
   onClose,
   layout = "default",
+  closeOnBackdrop = false,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [show, setShow] = React.useState(false);
@@ -87,6 +89,7 @@ const Modal: React.FC<
               animationDurationSec,
             }}
             ref={ref}
+            onClick={closeOnBackdrop ? onClose : undefined}
           ></StyledBackdropContainer>
           <StyledModalContainer $styled={{ isCentered }}>
             <StyledModalContent

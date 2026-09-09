@@ -34,7 +34,6 @@ export const StyledListItem = styled.div<{
 `;
 
 export const StyledItemContent = styled.div`
-  display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
@@ -43,7 +42,7 @@ export const StyledItemContent = styled.div`
 export const StyledMainContent = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   flex: 1;
 `;
 
@@ -81,6 +80,13 @@ export const StyledEndContent = styled.div`
   color: ${({ theme }) => theme.colors.orderSecondary.orderSecondary80};
 `;
 
-export const StyledChildren = styled.div`
-  padding-left: 20px;
+export const StyledChildren = styled.div<{ $expanded?: boolean }>`
+  display: grid;
+  grid-template-rows: ${({ $expanded }) => ($expanded ? "1fr" : "0fr")};
+  transition: grid-template-rows 0.3s ease;
+  overflow: hidden;
+
+  > * {
+    min-height: 0;
+  }
 `;

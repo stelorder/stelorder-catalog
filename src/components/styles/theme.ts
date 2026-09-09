@@ -1,7 +1,7 @@
 import React from "react";
 import AppThemeProvider from "./appThemeProvider";
 
-const blue = "#004cbd";
+const blue = "#265DDD";
 const intensifyBlue = "#00409F";
 const orderSecondary = "#282848";
 const green = "#B6E0D5";
@@ -12,14 +12,14 @@ export const colors = {
     hover: intensifyBlue,
     blue100: blue,
     blue90: "#1A5EC4",
-    blue80: "#3370CA",
+    blue80: "#517DE4",
     blue70: "#4D82D1",
     blue60: "#6694d7",
     blue50: "#80A5DE",
     blue40: "#99B7E5",
     blue30: "#B2C9EB",
     blue20: "#CCDBF2",
-    blue10: "#E5EDF8",
+    blue10: "#E9EFFC",
     blue5: "#F5F6FC",
   },
   orderSecondary: {
@@ -39,6 +39,7 @@ export const colors = {
 
   alertError: {
     alertError100: "#AB0F0F",
+    alertError40: "#BD7F7F",
     alertError10: "#FFEDED",
   },
 
@@ -81,11 +82,15 @@ export const colors = {
     orderPrimary10: "#F9F5F2",
   },
   status: {
+    statusPendiente100: "#FFD700",
+    statusPendiente50: "#FFF8D3",
     warning: "#FFE76C",
     info: "#A8D5FF",
     success: "#3FD99D",
     danger: "#F4AEAE",
     dangerVerifactu: "#AB0F0F",
+    successStroke: "#A3E993",
+    dangerStroke: "#F2A7A7",
   },
   basicManagement: {
     bg100: "#45DCC6",
@@ -110,6 +115,23 @@ export const colors = {
     highlighted2: "#B0A6EC",
     highlighted3: "#8A38F5",
     highlighted4: "#6694D7",
+  },
+  variables: {
+    contabilidad: {
+      fillCard_configuracionSelect: {
+        read: "#F4F7FD",
+      },
+      strokeCard_configuracionSelect: {
+        read: "#7D9EEB",
+      },
+    },
+  },
+  posPrimary: {
+    posPrimary100: "#F76A6A",
+    posPrimary80: "#F2A7A7",
+    posPrimary30: "#FCC3C3",
+    posPrimary20: "#FFEBE8",
+    posPrimary10: "#FFF7F6",
   },
 };
 
@@ -153,6 +175,13 @@ export const fonts = {
     fontStyle: "normal",
     fontWeight: "400",
     lineHeight: "130%",
+  },
+  h2600: {
+    fontFamily: "'Roboto', semibold",
+    fontSize: "12px",
+    fontStyle: "normal",
+    fontWeight: "600",
+    lineHeight: "100%",
   },
   titleXl500: {
     fontFamily: "'Roboto', sans-serif",

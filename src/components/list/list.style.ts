@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+const PADDING_OFFSETS = [0, 18, 24, 22];
+
 export const StyledContainer = styled.div`
   display: flex;
 
@@ -11,6 +13,8 @@ export const StyledContainer = styled.div`
 export const StyledList = styled.div<{
   $maxHeight?: number | string;
   $dividers?: boolean;
+  $level?: number;
+  $paddingBase?: number;
 }>`
   display: flex;
 
@@ -22,6 +26,11 @@ export const StyledList = styled.div<{
 
   max-height: ${({ $maxHeight }) =>
     typeof $maxHeight === "number" ? `${$maxHeight}px` : $maxHeight};
+
+  padding-left: ${({ $level = 0, $paddingBase = 0 }) => {
+    const idx = Math.min($level, PADDING_OFFSETS.length - 1);
+    return `${$paddingBase + PADDING_OFFSETS[idx]}px`;
+  }};
 
   &::-webkit-scrollbar {
     width: 6px;

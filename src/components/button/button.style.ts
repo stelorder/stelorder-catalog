@@ -92,6 +92,23 @@ const buttonVariantProps: ButtonVariantProps = {
     color: theme.colors.orderSecondary.orderSecondary40,
     border: `1px solid ${theme.colors.orderSecondary.orderSecondary30}`,
   }),
+  lightBlue: (theme) => ({
+    backgroundColor: theme.colors.blue.blue5,
+    color: theme.colors.orderSecondary.orderSecondary90,
+    border: `1px solid ${theme.colors.blue.blue20}`,
+    hover: (theme) => ({
+      backgroundColor: theme.colors.blue.blue10,
+      color: theme.colors.orderSecondary.orderSecondary100,
+      border: `1px solid ${theme.colors.blue.blue40}`,
+    }),
+  }),
+  danger: (theme) => ({
+    backgroundColor: theme.colors.posPrimary.posPrimary30,
+    color: theme.colors.bn.bn100,
+    hover: (theme) => ({
+      backgroundColor: theme.colors.posPrimary.posPrimary80,
+    }),
+  }),
 };
 
 export const StyledButton = styled.button<

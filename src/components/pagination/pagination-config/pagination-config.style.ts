@@ -22,7 +22,6 @@ export const StyledPaginationConfigSelectScope = styled.div`
   && .form-control.select {
     min-height: 22px;
     height: 22px;
-    gap: 0;
     padding: 3px 6px;
   }
 
@@ -30,16 +29,11 @@ export const StyledPaginationConfigSelectScope = styled.div`
     display: none;
   }
 
-  && .form-control.select > div {
-    display: flex;
-    align-items: center;
-  }
-
-  && .form-control.select ul li {
+  && .form-control.select [data-option] {
     padding: 0px;
   }
 
-  && .form-control.select ul {
+  && .form-control.select > div:last-child {
     width: max-content;
   }
 `;

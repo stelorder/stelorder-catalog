@@ -16,15 +16,30 @@ export type StatusOrderElements = {
   text: number;
 };
 
+/**
+ * - `default`: círculo macizo de 14px.
+ * - `dot`: punto de 11px con borde claro (`statusDot`).
+ */
+export type StatusVariant = "default" | "dot";
+
 const Status: React.FC<
   {
     gap?: number;
     status: StatusType;
+    variant?: StatusVariant;
     order?: Partial<StatusOrderElements>;
     label?: string;
     statusText?: string;
   } & HtmlProps<HTMLDivElement>
-> = ({ gap = 6, status, order, label, statusText, htmlProps }) => {
+> = ({
+  gap = 6,
+  status,
+  variant = "default",
+  order,
+  label,
+  statusText,
+  htmlProps,
+}) => {
   const defaultOrder: StatusOrderElements = {
     label: 0,
     icon: 1,
@@ -41,6 +56,7 @@ const Status: React.FC<
       $styled={{
         gap,
         status,
+        variant,
         order: mergedOrder,
         label,
         statusText,

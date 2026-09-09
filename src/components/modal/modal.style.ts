@@ -43,6 +43,7 @@ export const StyledModalContainer = styled.div<
     css`
       align-items: center;
     `}
+  pointer-events: none;
 `;
 
 export const StyledModalContent = styled.div<
@@ -88,6 +89,8 @@ export const StyledModalContent = styled.div<
     line-height: ${({ theme }) => theme.fonts.h1400.lineHeight};
     color: ${({ theme }) => theme.colors.orderSecondary.orderSecondary70};
   }
+
+  pointer-events: auto;
 `;
 
 export const StyledCenteredIconWrapper = styled.div`

@@ -6,3 +6,5 @@ export type CommonProps = {
 export type ValidatingState = "valid" | "invalid" | "default";
 
 export type AlignLabel = "left" | "right";
+
+export type SwitchVariant = "switch" | "switch-pill";

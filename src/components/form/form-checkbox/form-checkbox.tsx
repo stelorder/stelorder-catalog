@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from "react";
-import { AlignLabel, CommonProps } from "../form-types";
+import { AlignLabel, CommonProps, SwitchVariant } from "../form-types";
 import { HtmlProps } from "../../styles/theme";
 import { StyledFormCheckbox } from "./form-checkbox.style";
 import { mapState } from "../form-utils";
@@ -8,7 +8,7 @@ export type FormCheckboxProps = PropsWithChildren<
   {
     label?: string;
     id: string;
-    type?: "checkbox" | "radio" | "switch";
+    type?: "checkbox" | "radio" | SwitchVariant;
     labelPosition?: AlignLabel;
     labelGap?: number;
   } & CommonProps &
@@ -28,7 +28,7 @@ const FormCheckbox: React.FC<FormCheckboxProps> = ({
   const state = mapState(isValid, isInvalid);
   return (
     <div style={{ display: "inline-flex", gap: labelGap }}>
-      {type !== "switch" && (
+      {type !== "switch" && type !== "switch-pill" && (
         <label
           style={{
             ...props?.htmlProps?.style,

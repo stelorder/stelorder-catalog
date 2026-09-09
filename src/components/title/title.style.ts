@@ -12,6 +12,7 @@ const colorDict = ({
 }): string => {
   switch (variant) {
     case "primary":
+    case "xl":
       return theme.colors.orderSecondary.orderSecondary100;
     case "default":
     default:
@@ -27,6 +28,8 @@ const typographyByVariant = (
   switch (variant) {
     case "primary":
       return theme.fonts.titleL500;
+    case "xl":
+      return theme.fonts.titleXl500;
     case "default":
     default:
       return theme.fonts.titleL700; // cambia aquí si quieres otro token
@@ -42,6 +45,7 @@ const textAlignByVariant = (
   switch (variant) {
     case "primary":
       return "center";
+    case "xl":
     case "default":
     default:
       return "left";

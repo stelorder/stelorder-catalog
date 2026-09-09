@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { IntegrationsThemeType, StyledProp } from "../styles/theme";
-import { StatusOrderElements, StatusType } from "./status";
+import { StatusOrderElements, StatusType, StatusVariant } from "./status";
 import React, { HTMLAttributes } from "react";
 import FormLabel from "../form/form-label/form-label";
 
@@ -21,7 +21,7 @@ const statusColorDict = ({
     case "warning":
       return theme.colors.status.warning;
     case "danger":
-      return theme.colors.status.dangerVerifactu;
+      return theme.colors.alertError.alertError100;
     case "info":
       return theme.colors.blue.blue70;
     case "paused":
@@ -53,6 +53,45 @@ const StyledStatusIcon = styled.svg.attrs<
   }
 `;
 
+const statusStrokeDict = ({
+  theme,
+  status,
+}: {
+  theme: IntegrationsThemeType;
+  status: StatusType;
+}): string => {
+  switch (status) {
+    case "danger":
+      return theme.colors.posPrimary.posPrimary80;
+    case "success":
+      return theme.colors.alertSuccess.alertSuccess30;
+    default:
+      return statusColorDict({ theme, status });
+  }
+};
+
+/** Variante `dot`: punto de 11px con borde claro. */
+const StyledStatusDotIcon = styled.svg.attrs<
+  StyledProp<{ status: StatusType; order: number }>
+>({
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 11 11",
+  fill: "none",
+  "aria-hidden": true,
+})`
+  order: ${({ $styled }) => $styled.order};
+  width: 11px;
+  height: 11px;
+  flex: 0 0 auto;
+
+  & > circle {
+    fill: ${({ theme, $styled }) =>
+      statusColorDict({ theme, status: $styled.status })};
+    stroke: ${({ theme, $styled }) =>
+      statusStrokeDict({ theme, status: $styled.status })};
+  }
+`;
+
 const StyledStatusText = styled.span<StyledProp<{ order: number }>>`
   order: ${({ $styled }) => $styled.order};
   color: ${({ theme }) => theme.colors.orderSecondary.orderSecondary70};
@@ -67,6 +106,7 @@ export const StyledStatusComponent: React.FC<
   StyledProp<{
     gap: number;
     status: StatusType;
+    variant: StatusVariant;
     order: StatusOrderElements;
     label?: string;
     statusText?: string;
@@ -84,11 +124,19 @@ export const StyledStatusComponent: React.FC<
           {$styled.label}
         </FormLabel>
       )}
-      <StyledStatusIcon
-        $styled={{ status: $styled.status, order: $styled.order.icon }}
-      >
-        <circle cx="7" cy="7" r="7" />
-      </StyledStatusIcon>
+      {$styled.variant === "dot" ? (
+        <StyledStatusDotIcon
+          $styled={{ status: $styled.status, order: $styled.order.icon }}
+        >
+          <circle cx="5.5" cy="5.5" r="4.75" strokeWidth="1.5" />
+        </StyledStatusDotIcon>
+      ) : (
+        <StyledStatusIcon
+          $styled={{ status: $styled.status, order: $styled.order.icon }}
+        >
+          <circle cx="7" cy="7" r="7" />
+        </StyledStatusIcon>
+      )}
       {$styled.statusText && (
         <StyledStatusText $styled={{ order: $styled.order.text }}>
           {$styled.statusText}

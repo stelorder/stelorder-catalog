@@ -10,7 +10,9 @@ export type ButtonVariant =
   | "whiteOutlineFree"
   | "grayOutlineFree"
   | "lite"
-  | "disabled";
+  | "disabled"
+  | "lightBlue"
+  | "danger";
 
 export type ButtonSize = "xl" | "m" | "l";
 

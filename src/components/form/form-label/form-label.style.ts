@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledLabel = styled.label`
-  color: ${({ theme }) => theme.colors.orderSecondary.orderSecondary100};
+  color: ${({ theme }) => theme.colors.orderSecondary.orderSecondary80};
   font-family: ${({ theme }) => theme.fonts.h1500.fontFamily};
   font-size: ${({ theme }) => theme.fonts.h1500.fontSize};
   font-weight: ${({ theme }) => theme.fonts.h1500.fontWeight};
