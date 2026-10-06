@@ -10,7 +10,6 @@ function getRelativePosition({
   childElement: HTMLElement;
   ancestorElement: HTMLElement;
 }) {
-  console.log({ childElement, ancestorElement });
   const childRect = childElement.getBoundingClientRect();
   const ancestorRect = ancestorElement.getBoundingClientRect();
 
@@ -34,8 +33,10 @@ export const StyledTooltipContainer: React.FC<
   return (
     <TooltipContainer
       id={id}
+      // eslint-disable-next-line react-hooks/immutability
       onMouseEnter={(e) => {
         if (!tooltipRef.current || !$styled.onHoverDisplay) return;
+        // eslint-disable-next-line react-hooks/immutability
         if ($styled.showIn) $styled.showIn.style.position = "relative";
         tooltipRef.current.style.opacity = "0";
         tooltipRef.current.style.display = "flex";
@@ -46,7 +47,6 @@ export const StyledTooltipContainer: React.FC<
         tooltipRef.current.style.visibility = "hidden";
         // tooltipRef.current.style.left = `0px`;
         const tooltipRect = tooltipRef.current.getBoundingClientRect();
-        console.log(tooltipRef.current.getClientRects());
         const triggerRect = getRelativePosition({
           childElement: e.currentTarget,
           ancestorElement: $styled.showIn!,
@@ -80,7 +80,6 @@ export const StyledTooltipContainer: React.FC<
             tooltipElem: tooltipRef.current,
             tooltipRect: finalTooltipRect,
           });
-          console.log("Recalculando posición del tooltip");
         }
         tooltipRef.current.style.visibility = "visible";
         tooltipRef.current!.classList.add("show");

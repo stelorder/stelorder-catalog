@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useLayoutEffect } from "react";
+import React, { PropsWithChildren, useId, useLayoutEffect } from "react";
 import { StyledSimpleGridItem } from "./simple-grid-item.style";
 import { useSimpleGridContext } from "../context/simple-grid-context";
 import { useTheme } from "styled-components";
@@ -37,10 +37,8 @@ const SimpleGridItem: React.FC<
   const theme = useTheme();
 
   // asegúrate de tener un id para poder escribir la variable CSS --{id}-height
-  const generatedId = React.useMemo(
-    () => `simple-grid-item-${Math.random().toString(36).slice(2)}`,
-    [],
-  );
+  const key = useId();
+  const generatedId = React.useMemo(() => `simple-grid-item-${key}`, [key]);
 
   // usa el id de props si existe, si no el generado
   const id = htmlProps?.id ?? generatedId;

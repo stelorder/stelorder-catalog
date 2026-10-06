@@ -131,12 +131,6 @@ const FormControl: React.FC<FormControlProps> = (props) => {
     },
     [togglePassword],
   );
-  console.log(
-    "Input class name:",
-    inputRef?.current?.closest("form")?.className,
-  );
-  console.log("State", state);
-  console.log("Check validity", inputRef?.current?.checkValidity());
 
   return (
     <StyledControlFlex $styled={{ state }}>

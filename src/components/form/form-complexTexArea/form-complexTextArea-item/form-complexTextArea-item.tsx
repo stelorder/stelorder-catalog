@@ -3,10 +3,7 @@ import { HtmlProps } from "../../../styles/theme";
 import { StyledFormComplexTextAreaItem } from "./form-complexTextArea-item.style";
 
 export type FormComplexTextAreaItemPosition =
-  | "top"
-  | "bottom"
-  | "left"
-  | "right";
+  "top" | "bottom" | "left" | "right";
 
 export type FormComplexTextAreaItemProps = PropsWithChildren<
   HtmlProps<HTMLDivElement> & {

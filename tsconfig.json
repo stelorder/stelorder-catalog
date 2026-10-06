@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
+    "rootDir": "./src", // Define el directorio raíz de los archivos fuente.
     "target": "ES6", // Especifica la versión de JavaScript a la que se transpilará el código.
     "useDefineForClassFields": true, // Habilita el uso de 'define' para campos de las clases.
+    "types": ["node"], // Especifica los tipos globales disponibles para el código.
     "lib": ["ES2020", "DOM", "DOM.Iterable"], // Especifica las bibliotecas disponibles para el código.
     "module": "ESNext", // Define el sistema de módulos que se utilizará para la generación de código.
     "skipLibCheck": true, // Omite la verificación de tipos de archivos de declaración.

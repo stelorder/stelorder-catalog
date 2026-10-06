@@ -57,23 +57,28 @@ export function createValidatingFormControlCssBlock({
         }
       `
     : css`
-        ${state === "valid" &&
-        css`
-          & ~ .feedback-valid {
-            display: block !important;
-          }
-        `}
+        ${
+          state === "valid" &&
+          css`
+            & ~ .feedback-valid {
+              display: block !important;
+            }
+          `
+        }
 
-        ${state === "invalid" &&
-        css`
-          & ~ .feedback-invalid {
-            display: block !important;
-          }
-        `}
+        ${
+          state === "invalid" &&
+          css`
+            & ~ .feedback-invalid {
+              display: block !important;
+            }
+          `
+        }
 
   /* Estado INVALID */
-  ${state === "invalid" &&
-        `
+  ${
+          state === "invalid" &&
+          `
     border-color: ${theme.colors.alertError.alertError100};
     &:hover {
       border-color: #DC323280;
@@ -83,10 +88,12 @@ export function createValidatingFormControlCssBlock({
       border-color: ${theme.colors.alertError.alertError100};
       box-shadow: 0 0 0 2px ${theme.colors.alertError.alertError10};
     }
-  `}
+  `
+        }
 
-  ${state === "valid" &&
-        `
+  ${
+          state === "valid" &&
+          `
     border-color: ${theme.colors.alertSuccess.alertSuccess100};
     &:hover {
       border-color: ${theme.colors.alertSuccess.alertSuccess100};
@@ -96,6 +103,7 @@ export function createValidatingFormControlCssBlock({
       border-color: ${theme.colors.alertSuccess.alertSuccess100};
       box-shadow: 0 0 0 2px ${theme.colors.alertSuccess.alertSuccess30};
     }
-  `}
+  `
+        }
       `;
 }

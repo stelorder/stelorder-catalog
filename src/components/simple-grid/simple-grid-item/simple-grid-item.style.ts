@@ -56,14 +56,18 @@ const responsiveStyles = (
   bp &&
   css`
     @media (min-width: ${minWidth}) {
-      ${bp.col &&
-      css`
-        flex: 0 0 ${getFlexValue(bp.col, total, gap)};
-      `}
-      ${bp.align &&
-      css`
-        align-self: ${mapItemAlign(bp.align)};
-      `}
+      ${
+        bp.col &&
+        css`
+          flex: 0 0 ${getFlexValue(bp.col, total, gap)};
+        `
+      }
+      ${
+        bp.align &&
+        css`
+          align-self: ${mapItemAlign(bp.align)};
+        `
+      }
       ${bp.m && responsiveSpacing(bp.m, "margin")}
       ${bp.p && responsiveSpacing(bp.p, "padding")}
     }
@@ -90,33 +94,41 @@ export const StyledSimpleGridItem = styled.div.attrs<
   ${({ $styled }) => $styled.m && responsiveSpacing($styled.m, "margin")}
   ${({ $styled }) => $styled.p && responsiveSpacing($styled.p, "padding")}
   ${({ $styled, theme }) => css`
-    ${$styled.sm &&
-    responsiveStyles(
-      $styled.sm,
-      theme.breakpoints.sm,
-      $styled.total,
-      $styled.gap,
-    )}
-    ${$styled.md &&
-    responsiveStyles(
-      $styled.md,
-      theme.breakpoints.md,
-      $styled.total,
-      $styled.gap,
-    )}
-    ${$styled.lg &&
-    responsiveStyles(
-      $styled.lg,
-      theme.breakpoints.lg,
-      $styled.total,
-      $styled.gap,
-    )}
-    ${$styled.xl &&
-    responsiveStyles(
-      $styled.xl,
-      theme.breakpoints.xl,
-      $styled.total,
-      $styled.gap,
-    )}
+    ${
+      $styled.sm &&
+      responsiveStyles(
+        $styled.sm,
+        theme.breakpoints.sm,
+        $styled.total,
+        $styled.gap,
+      )
+    }
+    ${
+      $styled.md &&
+      responsiveStyles(
+        $styled.md,
+        theme.breakpoints.md,
+        $styled.total,
+        $styled.gap,
+      )
+    }
+    ${
+      $styled.lg &&
+      responsiveStyles(
+        $styled.lg,
+        theme.breakpoints.lg,
+        $styled.total,
+        $styled.gap,
+      )
+    }
+    ${
+      $styled.xl &&
+      responsiveStyles(
+        $styled.xl,
+        theme.breakpoints.xl,
+        $styled.total,
+        $styled.gap,
+      )
+    }
   `};
 `;

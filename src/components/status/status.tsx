@@ -3,12 +3,7 @@ import { HtmlProps } from "../styles/theme";
 import { StyledStatusComponent } from "./status.style";
 
 export type StatusType =
-  | "success"
-  | "danger"
-  | "warning"
-  | "info"
-  | "paused"
-  | "active";
+  "success" | "danger" | "warning" | "info" | "paused" | "active";
 
 export type StatusOrderElements = {
   label: number;

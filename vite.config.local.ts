@@ -5,18 +5,18 @@ import { peerDependencies } from "./package.json";
 import { visualizer } from "rollup-plugin-visualizer";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import svgr from "vite-plugin-svgr";
+import svgr from "vite-plugin-svgr"; // {added}
 import fs from "node:fs";
 
 const dirname =
-  typeof __dirname !== "undefined"
-    ? __dirname
-    : path.dirname(fileURLToPath(import.meta.url));
+    typeof __dirname !== "undefined"
+        ? __dirname
+        : path.dirname(fileURLToPath(import.meta.url));
 
 const pkg = JSON.parse(fs.readFileSync("./package.json", "utf-8"));
 const versionFolder = `stelorder-catalog-${pkg.version.replace(/\./g, "_")}`;
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   build: {
     outDir: versionFolder + "/dist",
     lib: {
@@ -46,14 +46,15 @@ export default defineConfig({
     },
   },
   plugins: [
-    dts(),
+    ...(command === "build" ? [dts()] : []),
+    // Only enable visualizer when explicitly requested (e.g. ANALYZE=true).
     ...(process.env.ANALYZE === "true"
-      ? [
+        ? [
           visualizer({
             open: true,
           }),
         ]
-      : []),
+        : []),
     svgr({
       svgrOptions: {
         icon: true,
@@ -79,8 +80,8 @@ export default defineConfig({
           type: pkg.type,
         };
         fs.writeFileSync(
-          `./${versionFolder}/package.json`,
-          JSON.stringify(pkgToCopy, null, 2),
+            `./${versionFolder}/package.json`,
+            JSON.stringify(pkgToCopy, null, 2),
         );
       },
     },
@@ -102,4 +103,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

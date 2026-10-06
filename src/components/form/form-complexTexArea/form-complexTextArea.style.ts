@@ -63,9 +63,11 @@ export const StyledComplexTextAreaWrapper = styled.div<
       &:hover:not(:focus-within) {
         ${hover.borderColor ? `border-color: ${hover.borderColor};` : ""}
         ${hover.boxShadow ? `box-shadow: ${hover.boxShadow};` : ""}
-        ${hover.backgroundColor
-          ? `background-color: ${hover.backgroundColor};`
-          : ""}
+        ${
+          hover.backgroundColor
+            ? `background-color: ${hover.backgroundColor};`
+            : ""
+        }
       }
     `;
   }}
@@ -84,9 +86,11 @@ export const StyledComplexTextAreaWrapper = styled.div<
     return css`
       ${focus.borderColor ? `border-color: ${focus.borderColor};` : ""}
       ${focus.boxShadow ? `box-shadow: ${focus.boxShadow};` : ""}
-      ${focus.backgroundColor
-        ? `background-color: ${focus.backgroundColor};`
-        : ""}
+      ${
+        focus.backgroundColor
+          ? `background-color: ${focus.backgroundColor};`
+          : ""
+      }
     `;
   }}
 
@@ -152,9 +156,11 @@ export const StyledTextAreaCell = styled.div<StyledProp<CellStyled>>`
           return css`
             ${def.padding ? `padding: ${def.padding};` : ""}
             ${def.color ? `color: ${def.color};` : ""}
-            ${def.backgroundColor
-              ? `background-color: ${def.backgroundColor};`
-              : ""}
+            ${
+              def.backgroundColor
+                ? `background-color: ${def.backgroundColor};`
+                : ""
+            }
             ${def.boxShadow ? `box-shadow: ${def.boxShadow};` : ""}
           `;
         }}
@@ -166,9 +172,11 @@ export const StyledTextAreaCell = styled.div<StyledProp<CellStyled>>`
             &:hover:not([aria-disabled="true"]):not(:focus) {
               ${hover.padding ? `padding: ${hover.padding};` : ""}
               ${hover.color ? `color: ${hover.color};` : ""}
-              ${hover.backgroundColor
-                ? `background-color: ${hover.backgroundColor};`
-                : ""}
+              ${
+                hover.backgroundColor
+                  ? `background-color: ${hover.backgroundColor};`
+                  : ""
+              }
               ${hover.boxShadow ? `box-shadow: ${hover.boxShadow};` : ""}
             }
           `;
@@ -181,9 +189,11 @@ export const StyledTextAreaCell = styled.div<StyledProp<CellStyled>>`
             &:focus {
               ${focus.padding ? `padding: ${focus.padding};` : ""}
               ${focus.color ? `color: ${focus.color};` : ""}
-              ${focus.backgroundColor
-                ? `background-color: ${focus.backgroundColor};`
-                : ""}
+              ${
+                focus.backgroundColor
+                  ? `background-color: ${focus.backgroundColor};`
+                  : ""
+              }
               ${focus.boxShadow ? `box-shadow: ${focus.boxShadow};` : ""}
             }
           `;
@@ -196,9 +206,11 @@ export const StyledTextAreaCell = styled.div<StyledProp<CellStyled>>`
             &[aria-disabled="true"] {
               ${disabled.padding ? `padding: ${disabled.padding};` : ""}
               ${disabled.color ? `color: ${disabled.color};` : ""}
-              ${disabled.backgroundColor
-                ? `background-color: ${disabled.backgroundColor};`
-                : ""}
+              ${
+                disabled.backgroundColor
+                  ? `background-color: ${disabled.backgroundColor};`
+                  : ""
+              }
               ${disabled.boxShadow ? `box-shadow: ${disabled.boxShadow};` : ""}
             }
           `;

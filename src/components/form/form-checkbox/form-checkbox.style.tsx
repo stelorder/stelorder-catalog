@@ -187,20 +187,24 @@ const basicStyle = ({
   &:checked {
     background-color: ${theme.colors.orderPrimary.orderPrimary90};
   }
-  ${type !== "switch" &&
-  css`
-    border: 1px solid ${theme.colors.bn.bn30};
+  ${
+    type !== "switch" &&
+    css`
+      border: 1px solid ${theme.colors.bn.bn30};
 
-    &:checked {
-      border: 1px solid ${theme.colors.orderPrimary.orderPrimary90};
-    }
-  `}
-  ${type !== "switch"
-    ? checkRadioBaseStyle({
-        theme,
-        type: type as "checkbox" | "radio",
-      })
-    : checkSwitchBaseStyle()}
+      &:checked {
+        border: 1px solid ${theme.colors.orderPrimary.orderPrimary90};
+      }
+    `
+  }
+  ${
+    type !== "switch"
+      ? checkRadioBaseStyle({
+          theme,
+          type: type as "checkbox" | "radio",
+        })
+      : checkSwitchBaseStyle()
+  }
 
   ${createValidatingFormControlCssBlock({
     state,
@@ -223,20 +227,24 @@ const checkRadioBaseStyle = ({
   width: 14px;
   height: 14px;
   fill: ${theme.colors.bn.bn0};
-  ${type === "checkbox" &&
-  css`
-    border-radius: 2px;
-    &:checked {
-      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3E%3C/svg%3E");
-    }
-  `}
-  ${type === "radio" &&
-  css`
-    border-radius: 50%;
-    &:checked {
-      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='5' fill='%23fff'/%3E%3C/svg%3E");
-    }
-  `}
+  ${
+    type === "checkbox" &&
+    css`
+      border-radius: 2px;
+      &:checked {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3E%3C/svg%3E");
+      }
+    `
+  }
+  ${
+    type === "radio" &&
+    css`
+      border-radius: 50%;
+      &:checked {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='5' fill='%23fff'/%3E%3C/svg%3E");
+      }
+    `
+  }
 `;
 
 // ========== Switch Pill Styles ==========

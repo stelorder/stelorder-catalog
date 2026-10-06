@@ -32,6 +32,7 @@ export type PaginationProps = {
   paginationConfig: PaginationConfigProps;
   totalPages: number;
   onChangeIsLoading?: (isLoading: boolean) => void;
+  movedToRef?: React.RefObject<((page: number) => void) | null>;
 };
 
 const Pagination: React.FC<PaginationProps & HtmlProps<HTMLDivElement>> = ({
@@ -43,6 +44,7 @@ const Pagination: React.FC<PaginationProps & HtmlProps<HTMLDivElement>> = ({
   totalPages,
   onChangeIsLoading,
   htmlProps,
+  movedToRef,
 }) => {
   const [page, setPage] = useState<Number>(1);
   const [totalPageState, setTotalPageState] = useState<number>(totalPages);
@@ -52,6 +54,11 @@ const Pagination: React.FC<PaginationProps & HtmlProps<HTMLDivElement>> = ({
     useState<SelectOption | null>(null);
   const id = useId();
   const pageRef = useRef(page);
+
+  useEffect(() => {
+    if (!movedToRef) return;
+    movedToRef.current = (page: number) => setPendingPage(new Number(page));
+  }, [movedToRef]);
 
   useEffect(() => {
     pageRef.current = page;

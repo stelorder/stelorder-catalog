@@ -38,30 +38,42 @@ const responsiveStyles = (
   bp &&
   css`
     @media (min-width: ${minWidth}) {
-      ${bp.direction &&
-      css`
-        flex-direction: ${bp.direction};
-      `}
-      ${bp.alignY &&
-      css`
-        align-items: ${mapAlign(bp.alignY)};
-      `}
-    ${bp.gap &&
-      css`
-        gap: ${bp.gap}px;
-      `}
-    ${bp.alignX &&
-      css`
-        justify-content: ${mapAlign(bp.alignX)};
-      `}
-    ${bp.alignY &&
-      css`
-        align-items: ${mapAlign(bp.alignY)};
-      `}
-    ${bp.wrap &&
-      css`
-        flex-wrap: ${bp.wrap ? "wrap" : "nowrap"};
-      `}
+      ${
+        bp.direction &&
+        css`
+          flex-direction: ${bp.direction};
+        `
+      }
+      ${
+        bp.alignY &&
+        css`
+          align-items: ${mapAlign(bp.alignY)};
+        `
+      }
+    ${
+        bp.gap &&
+        css`
+          gap: ${bp.gap}px;
+        `
+      }
+    ${
+        bp.alignX &&
+        css`
+          justify-content: ${mapAlign(bp.alignX)};
+        `
+      }
+    ${
+        bp.alignY &&
+        css`
+          align-items: ${mapAlign(bp.alignY)};
+        `
+      }
+    ${
+        bp.wrap &&
+        css`
+          flex-wrap: ${bp.wrap ? "wrap" : "nowrap"};
+        `
+      }
     }
   `;
 

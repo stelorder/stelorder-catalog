@@ -50,7 +50,7 @@ export const SearchableColumn: React.FC<SearchableColumnProps> = ({
   sortDirection,
   onSort,
   sortButtonAriaLabel = "Ordenar",
-  ...htmlProps
+  htmlProps,
 }) => {
   return (
     <th {...htmlProps}>
@@ -106,7 +106,7 @@ export const Column: React.FC<ColumnProps> = ({
   sortDirection,
   onSort,
   sortButtonAriaLabel = "Ordenar",
-  ...htmlProps
+  htmlProps,
 }) => {
   return (
     <th {...htmlProps}>

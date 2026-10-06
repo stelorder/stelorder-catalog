@@ -5,14 +5,14 @@ import { peerDependencies } from "./package.json";
 import { visualizer } from "rollup-plugin-visualizer";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import svgr from "vite-plugin-svgr";
+import svgr from "vite-plugin-svgr"; // {added}
 
 const dirname =
-  typeof __dirname !== "undefined"
-    ? __dirname
-    : path.dirname(fileURLToPath(import.meta.url));
+    typeof __dirname !== "undefined"
+        ? __dirname
+        : path.dirname(fileURLToPath(import.meta.url));
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   build: {
     lib: {
       entry: "./src/index.ts",
@@ -23,7 +23,7 @@ export default defineConfig({
     rollupOptions: {
       external: [...Object.keys(peerDependencies)],
       output: {
-        sourcemap: true,
+        sourcemap: false,
         paths: (id) => {
           if (id.includes("node_modules")) {
             return id;
@@ -32,7 +32,7 @@ export default defineConfig({
         },
       },
     },
-    sourcemap: true,
+    sourcemap: false,
     emptyOutDir: true,
   },
   resolve: {
@@ -41,14 +41,19 @@ export default defineConfig({
     },
   },
   plugins: [
-    dts(),
+    ...(command === "build" ? [dts()] : []),
+    // Only enable visualizer when explicitly requested (e.g. ANALYZE=true).
     ...(process.env.ANALYZE === "true"
-      ? [
+        ? [
           visualizer({
             open: true,
+            filename: "stats.html",
+            template: "treemap", //
+            gzipSize: true,
+            brotliSize: true,
           }),
         ]
-      : []),
+        : []),
     svgr({
       svgrOptions: {
         icon: true,
@@ -72,4 +77,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

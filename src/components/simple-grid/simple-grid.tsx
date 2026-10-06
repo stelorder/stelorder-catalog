@@ -9,12 +9,7 @@ import { breakpointsType, HtmlProps } from "../styles/theme";
 
 export type GridDirection = "row" | "column";
 export type GridAlign =
-  | "start"
-  | "center"
-  | "end"
-  | "stretch"
-  | "between"
-  | "around";
+  "start" | "center" | "end" | "stretch" | "between" | "around";
 
 type SimpleGridResponsiveProps = {
   [key in breakpointsType]?: SimpleGridBasicProps;
@@ -37,8 +32,7 @@ export type SimpleGridProps = {
 const SimpleGrid: React.FC<
   SimpleGridProps & {
     children:
-      | ReactElement<SimpleGridItemProps>
-      | ReactElement<SimpleGridItemProps>[];
+      ReactElement<SimpleGridItemProps> | ReactElement<SimpleGridItemProps>[];
   } & HtmlProps<HTMLDivElement>
 > = ({
   wrap,

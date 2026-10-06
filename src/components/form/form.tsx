@@ -1,4 +1,4 @@
-import { FormEvent, PropsWithChildren, useCallback, useState } from "react";
+import { SubmitEvent, PropsWithChildren, useCallback, useState } from "react";
 import { StyledForm } from "./form.style";
 import { HtmlProps } from "../styles/theme";
 
@@ -16,7 +16,7 @@ function FormBase({
   const [wasValidated, setWasValidated] = useState<boolean>(false);
   const { onSubmit: onSubmitFunc, ...restHtmlProps } = htmlProps || {};
   const onSubmit = useCallback(
-    (e: FormEvent<HTMLFormElement>) => {
+    (e: SubmitEvent<HTMLFormElement>) => {
       if (!notHandleValidation) setWasValidated(true);
       e.currentTarget.checkValidity();
       onSubmitFunc?.(e);

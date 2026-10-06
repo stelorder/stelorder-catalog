@@ -32,17 +32,19 @@ export const StyledTextArea = styled.div<
         `
       : css`
           min-height: ${$styled.minHeight ?? "40px"};
-          ${$styled.maxHeight
-            ? css`
-                max-height: ${$styled.maxHeight};
-                overflow-y: auto;
-                scrollbar-color: ${({ theme }) => theme.colors.bn.bn25}
-                  transparent;
-                scrollbar-width: thin;
-              `
-            : css`
-                overflow: visible;
-              `}
+          ${
+            $styled.maxHeight
+              ? css`
+                  max-height: ${$styled.maxHeight};
+                  overflow-y: auto;
+                  scrollbar-color: ${({ theme }) => theme.colors.bn.bn25}
+                    transparent;
+                  scrollbar-width: thin;
+                `
+              : css`
+                  overflow: visible;
+                `
+          }
         `}
 
   padding: 14px 12px;
@@ -100,8 +102,9 @@ export const StyledTextArea = styled.div<
       &:hover:not([aria-disabled="true"]):not(:focus) {
         ${hover.borderColor && `border-color: ${hover.borderColor};`}
         ${hover.boxShadow && `box-shadow: ${hover.boxShadow};`}
-        ${hover.backgroundColor &&
-        `background-color: ${hover.backgroundColor};`}
+        ${
+          hover.backgroundColor && `background-color: ${hover.backgroundColor};`
+        }
         ${hover.color && `color: ${hover.color};`}
       }
     `;
@@ -120,8 +123,9 @@ export const StyledTextArea = styled.div<
       &:focus {
         ${focus.borderColor && `border-color: ${focus.borderColor};`}
         ${focus.boxShadow && `box-shadow: ${focus.boxShadow};`}
-        ${focus.backgroundColor &&
-        `background-color: ${focus.backgroundColor};`}
+        ${
+          focus.backgroundColor && `background-color: ${focus.backgroundColor};`
+        }
         ${focus.color && `color: ${focus.color};`}
       }
     `;
@@ -141,8 +145,10 @@ export const StyledTextArea = styled.div<
       `;
     return css`
       ${disabled.borderColor && `border: 1px solid ${disabled.borderColor};`}
-      ${disabled.backgroundColor &&
-      `background-color: ${disabled.backgroundColor};`}
+      ${
+        disabled.backgroundColor &&
+        `background-color: ${disabled.backgroundColor};`
+      }
       ${disabled.color && `color: ${disabled.color};`}
       ${disabled.boxShadow && `box-shadow: ${disabled.boxShadow};`}
       cursor: not-allowed;
